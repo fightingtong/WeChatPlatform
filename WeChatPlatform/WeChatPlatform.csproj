@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization\AuthBase.cs" />
+    <Compile Include="Entity\BaseWeChatUserEntity.cs" />
     <Compile Include="Env.cs" />
     <Compile Include="Entity\OAuthAccessTokenEntity.cs" />
     <Compile Include="JsonHelper.cs" />
