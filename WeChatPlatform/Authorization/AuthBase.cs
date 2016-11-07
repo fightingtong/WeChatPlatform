@@ -50,5 +50,30 @@ namespace WeChatPlatform.Authorization
 
             return user;
         }
+
+        /// <summary>
+        /// 获取（临时）永久二维码的Ticket。
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <param name="uid"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static QRcodeTicketEntity GetQRcodeTicket(string accessToken, int uid, int type)
+        {
+            string url = string.Format("https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token={0}", accessToken);
+            string postJson = type == 1
+                ? string.Format("{{\"action_name\": \"QR_LIMIT_STR_SCENE\", \"action_info\": {{\"scene\": {{\"scene_str\": \"{0}\"}}}}}}", uid)
+                : string.Format("{{\"expire_seconds\": 604800,\"action_name\": \"QR_SCENE\", \"action_info\": {{\"scene\": {{\"scene_id\": {0}}}}}}}"
+                , uid);
+            byte[] sendData = Encoding.UTF8.GetBytes(postJson);
+
+            string jsonContent = Encoding.UTF8.GetString(new WebClient().UploadData(url, "POST", sendData));
+            if (string.IsNullOrEmpty(jsonContent))
+                return null;
+
+            var ticket = JsonHelper.DeserializeJsonToObject<QRcodeTicketEntity>(jsonContent);
+
+            return ticket;
+        }
     }
 }
