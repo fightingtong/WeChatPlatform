@@ -47,7 +47,10 @@
     <Compile Include="AuthHandler.cs" />
     <Compile Include="Authorization\AuthBase.cs" />
     <Compile Include="Entity\BaseWeChatUserEntity.cs" />
+    <Compile Include="Entity\MagTemplateEntity.cs" />
     <Compile Include="Entity\OAuthWeChatUserEntity.cs" />
+    <Compile Include="PushMsgHandler.cs" />
+    <Compile Include="Entity\WeChatReturnCodeEntity.cs" />
     <Compile Include="Env.cs" />
     <Compile Include="Entity\OAuthAccessTokenEntity.cs" />
     <Compile Include="JsonHelper.cs" />

@@ -116,5 +116,68 @@ namespace WeChatPlatform.Authorization
 
             return token;
         }
+
+        /// <summary>
+        /// 发送客服消息。【仅对48小时活跃用户有效】
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <param name="content">发送内容</param>
+        public static WeChatReturnCodeEntity SendCustomerMsg(string openid, string content)
+        {
+            var token = GetBaseAccessToken();
+            if (token == null || string.IsNullOrEmpty(token.access_token))
+                return null;
+
+            string url
+                = string.Format("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={0}", token.access_token);
+            string postJson
+                = string.Format("{{\"touser\": \"{0}\",\"msgtype\": \"text\", \"text\": {{\"content\": \"{1}\"}}}}"
+                , openid, content);
+            byte[] sendData = Encoding.UTF8.GetBytes(postJson);
+
+            string jsonContent = Encoding.UTF8.GetString(new WebClient().UploadData(url, "POST", sendData));
+            if (string.IsNullOrEmpty(jsonContent))
+                return null;
+
+            var returnCode = JsonHelper.DeserializeJsonToObject<WeChatReturnCodeEntity>(jsonContent);
+
+            return returnCode;
+        }
+
+        /// <summary>
+        /// 发送消息-模板消息接口
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <param name="templateid">消息模板对应的唯一编号串</param>
+        /// <param name="skipUrl">模板点击跳转的链接</param>
+        /// <param name="jsonData">模板显示需要的json数据</param>
+        /// <returns></returns>
+        public static WeChatReturnCodeEntity SendTemplateMsg(string openid, string templateid, string skipUrl, object jsonData)
+        {
+            var token = GetBaseAccessToken();
+            if (token == null || string.IsNullOrEmpty(token.access_token))
+                return null;
+
+            string url
+                = string.Format("https://api.weixin.qq.com/cgi-bin/message/template/send?access_token={0}", token.access_token);
+            var msg = new MagTemplateEntity<object>
+            {
+                touser = openid,
+                template_id = templateid,
+                url = skipUrl,
+                topcolor = "#FF0000",
+                data = jsonData
+            };
+
+            var postJson = JsonHelper.SerializeObject(msg);
+            byte[] sendData = Encoding.UTF8.GetBytes(postJson);
+            string jsonContent = Encoding.UTF8.GetString(new WebClient().UploadData(url, "POST", sendData));
+            if (string.IsNullOrEmpty(jsonContent))
+                return null;
+
+            var returnCode = JsonHelper.DeserializeJsonToObject<WeChatReturnCodeEntity>(jsonContent);
+
+            return returnCode;
+        }
     }
 }
