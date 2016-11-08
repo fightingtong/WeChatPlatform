@@ -28,5 +28,22 @@ namespace WeChatPlatform
 
             return string.Format("https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket={0}", HttpUtility.UrlEncode(ticket.ticket));
         }
+
+        /// <summary>
+        /// 是否关注微信公众号。
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsSubscribe(string openid)
+        {
+            var token = AuthBase.GetBaseAccessToken();
+            if (token == null || string.IsNullOrEmpty(token.access_token))
+                return false;
+
+            var weChatUser = AuthBase.GetBaseWeChatUserInfo(token.access_token, openid);
+            if (weChatUser == null || weChatUser.subscribe < 1)
+                return false;
+
+            return true;
+        }
     }
 }
