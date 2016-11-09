@@ -54,9 +54,9 @@ namespace WeChatPlatform.Authorization
         /// <summary>
         /// 获取（临时）永久二维码的Ticket。
         /// </summary>
-        /// <param name="accessToken"></param>
+        /// <param name="accessToken">基础access_token</param>
         /// <param name="uid"></param>
-        /// <param name="type"></param>
+        /// <param name="type">0-临时，1-永久</param>
         /// <returns></returns>
         public static QRcodeTicketEntity GetQRcodeTicket(string accessToken, int uid, int type)
         {
