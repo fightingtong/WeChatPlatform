@@ -12,8 +12,6 @@ namespace WeChatPlatform.WeChatPay
 {
     public class PayService
     {
-        private const string PayKey = "xxxyyy";
-
         /// <summary>
         /// 建立请求，以模拟远程HTTP的POST请求方式构造并获取支付宝的处理结果
         /// </summary>
@@ -134,7 +132,7 @@ namespace WeChatPlatform.WeChatPay
 
                 sb.AppendFormat("{0}={1}&", item.Key, item.Value);
             }
-            sb.Append("key=" + PayKey);
+            sb.Append("key=" + Env.PayKey);
             var bytesToHash = Encoding.UTF8.GetBytes(sb.ToString()); // 注意，必须是UTF-8。
             var hashResult = ComputeMd5Hash(bytesToHash);
             var hash = BytesToString(hashResult, false);

@@ -13,6 +13,9 @@ namespace WeChatPlatform
         /// </summary>
         public static readonly string AppId = "wxxxxxxxxx";
 
+        /// <summary>
+        /// 公众账号秘钥。
+        /// </summary>
         public static readonly string Secret = "xxxxxx";
 
         /// <summary>
@@ -21,12 +24,17 @@ namespace WeChatPlatform
         public static readonly string MchId = "1234567890";
 
         /// <summary>
-        /// 网关地址
+        /// 支付秘钥。
+        /// </summary>
+        public static readonly string PayKey = "xxxyyy";
+
+        /// <summary>
+        /// 网关地址:微信支付
         /// </summary>
         public static string RedPackUrl = "https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack";
 
         /// <summary>
-        /// 网关地址
+        /// 网关地址：微信支付查询
         /// </summary>
         public static string RedPackQueryUrl = "https://api.mch.weixin.qq.com/mmpaymkttransfers/gethbinfo";
     }
