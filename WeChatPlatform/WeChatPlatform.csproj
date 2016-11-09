@@ -49,12 +49,15 @@
     <Compile Include="Entity\BaseWeChatUserEntity.cs" />
     <Compile Include="Entity\MagTemplateEntity.cs" />
     <Compile Include="Entity\OAuthWeChatUserEntity.cs" />
+    <Compile Include="Entity\WeChatPayResultEntity.cs" />
+    <Compile Include="PayHandler.cs" />
     <Compile Include="PushMsgHandler.cs" />
     <Compile Include="Entity\WeChatReturnCodeEntity.cs" />
     <Compile Include="Env.cs" />
     <Compile Include="Entity\OAuthAccessTokenEntity.cs" />
     <Compile Include="JsonHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeChatPay\PayService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
