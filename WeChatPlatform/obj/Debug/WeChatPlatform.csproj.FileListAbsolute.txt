@@ -1,7 +1,0 @@
-G:\GitHub\myproject\WeChatPlatform\WeChatPlatform\bin\Debug\WeChatPlatform.dll
-G:\GitHub\myproject\WeChatPlatform\WeChatPlatform\bin\Debug\WeChatPlatform.pdb
-G:\GitHub\myproject\WeChatPlatform\WeChatPlatform\bin\Debug\Newtonsoft.Json.dll
-G:\GitHub\myproject\WeChatPlatform\WeChatPlatform\bin\Debug\Newtonsoft.Json.xml
-G:\GitHub\myproject\WeChatPlatform\WeChatPlatform\obj\Debug\WeChatPlatform.csprojResolveAssemblyReference.cache
-G:\GitHub\myproject\WeChatPlatform\WeChatPlatform\obj\Debug\WeChatPlatform.dll
-G:\GitHub\myproject\WeChatPlatform\WeChatPlatform\obj\Debug\WeChatPlatform.pdb
